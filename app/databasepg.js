@@ -17,8 +17,7 @@ client.query(`SELECT * FROM products`, (err,res) => {
     client.end
 });
 
-//product querrys
-
+//PRODUCT
 //get by id
 const getProductById = (id) => 
     client.query('SELECT * FROM products WHERE id = $1', [id]).then(data => data.rows[0]);
@@ -31,12 +30,27 @@ const getProductByCatagory = (catagory) =>
 const getProductByName = (name) => 
     client.query('SELECT * FROM products WHERE name = $1', [name]).then(data => data.rows);
 
-
-
-
+//USER
+//get user
+const getUser = (id) => 
+    client.query('SELECT * FROM account WHERE id = $1', [id]).then(data => data.rows[0]);
+//update user
+const updateUserFirstName = (new_first_name, id) => 
+    client.query(`UPDATE account SET first_name = $1 WHERE id = $2`, [new_first_name, id]);
+const updateUserLastName = (new_last_name, id) => 
+    client.query(`UPDATE account SET last_name = $1 WHERE id = $2`, [new_last_name, id]);
+const updateUserEmail = (new_email, id) =>
+    client.query('UPDATE account SET email = $1 WHERE id = $2', [new_email, id]);
+const updateUserPassword = (new_password, id) => 
+    client.query('UPDATE account SET password = $1 WHERE id = $2', [new_password, id]);
 
 module.exports = {
     getProductById,
     getProductByCatagory,
-    getProductByName
+    getProductByName,
+    getUser,
+    updateUserFirstName,
+    updateUserLastName,
+    updateUserEmail,
+    updateUserPassword
 }

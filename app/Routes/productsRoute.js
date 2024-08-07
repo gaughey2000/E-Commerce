@@ -1,5 +1,5 @@
 const express = require('express');
-const { getProductById, getProductByCatagory } = require('../databasepg');
+const { getProductById, getProductByCatagory, getProductByName } = require('../databasepg');
 const router = express.Router()
 
 //get products by id
