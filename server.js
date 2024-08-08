@@ -1,14 +1,5 @@
+require('dotenv').config();
 const express = require('express');
-const productRouter = require('./app/Routes/productsRoute');
-const app = express()
-const port = 3000
+const server = express();
 
-app.get('/', (req, res) => {
-  res.send('Hello World')
-});
-
-app.use('/products', productRouter)
-
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
-});
+server.listen(process.env.PORT)
