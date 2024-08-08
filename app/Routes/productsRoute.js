@@ -1,24 +1,22 @@
 const express = require('express');
 const { getProductById, getProductByCatagory, getProductByName } = require('../databasepg');
-const router = express.Router()
+const productRouter = express.Router()
 
 //get products by id
-router.get('/:id', async (req, res) => {
+productRouter.get('id/:id', async (req, res) => {
     const { id } = req.params;
     const targetProduct = await getProductById(id)
-
     if(!targetProduct) {
         return res.sendStatus(404);
     }
-
     res.json(targetProduct);
 });
 
 //get product by catagory
-router.get('/:catagory', async (req, res) => {
+productRouter.get('catagory/:catagory', async (req, res) => {
     const { catagory } = req.params;
+    console.log(catagory)
     const targetProduct = await getProductByCatagory(catagory)
-
     if(!targetProduct){
         return res.sendStatus(404)
     }
@@ -27,7 +25,7 @@ router.get('/:catagory', async (req, res) => {
 });
 
 //get product by name
-router.get('/:name', async (req, res) => {
+productRouter.get('name/:name', async (req, res) => {
     const { name } = req.params;
     const targetProduct = await getProductByName(name)
 
@@ -37,3 +35,5 @@ router.get('/:name', async (req, res) => {
 
     res.json(targetProduct)
 })
+
+module.exports = productRouter

@@ -20,15 +20,15 @@ client.query(`SELECT * FROM products`, (err,res) => {
 //PRODUCT
 //get by id
 const getProductById = (id) => 
-    client.query('SELECT * FROM products WHERE id = $1', [id]).then(data => data.rows[0]);
+    client.query('SELECT * FROM product WHERE id = $1', [id]).then(data => data.rows[0]);
 
 //get by catagory
 const getProductByCatagory = (catagory) => 
-    client.query('SELECT * FROM products WHERE catagory = $1', [catagory]).then(data => data.rows);
+    client.query('SELECT * FROM product WHERE catagory = $1', [catagory]).then(data => data.rows);
 
 //get by name
 const getProductByName = (name) => 
-    client.query('SELECT * FROM products WHERE name = $1', [name]).then(data => data.rows);
+    client.query('SELECT * FROM product WHERE name = $1', [name]).then(data => data.rows);
 
 //USER
 //get user
@@ -44,6 +44,11 @@ const updateUserEmail = (new_email, id) =>
 const updateUserPassword = (new_password, id) => 
     client.query('UPDATE account SET password = $1 WHERE id = $2', [new_password, id]);
 
+//CART
+//add to cart
+const addCart = (product_id) =>
+    client.query('UPDATE cartitem SET ', [product_id]) ;
+
 module.exports = {
     getProductById,
     getProductByCatagory,
@@ -52,5 +57,6 @@ module.exports = {
     updateUserFirstName,
     updateUserLastName,
     updateUserEmail,
-    updateUserPassword
+    updateUserPassword,
+    addCart
 }
