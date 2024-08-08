@@ -2,7 +2,7 @@ const express = require('express')
 const {v4} = require('uuid')
 const { getAllProducts, getProductById, getAllProductsByCatagory, updateProductPrice, updateProductName, updateProductDescription, updateProductCatagory, insertProduct, deleteProduct } = require('../db/products')
 const productRouter = express.Router()
-
+//get all products
 productRouter.get('/', async (req, res) => {
     try{
         const products = await getAllProducts()
@@ -13,6 +13,7 @@ productRouter.get('/', async (req, res) => {
         return res.send(err)
     }
 })
+//get product by id
 productRouter.get('/id/:id', async (req, res) => {
     try{
         const {id} = req.params
@@ -24,6 +25,7 @@ productRouter.get('/id/:id', async (req, res) => {
         return res.send(err)
     }
 })
+//get products by catagory
 productRouter.get('/catagory/:cat', async (req, res) => {
     try{
         const {cat} = req.params
@@ -35,7 +37,7 @@ productRouter.get('/catagory/:cat', async (req, res) => {
         return res.send(err)
     }
 })
-
+//update price
 productRouter.put('/price/:id', async (req, res) => {
     try{
         const {id} = req.params
@@ -49,6 +51,7 @@ productRouter.put('/price/:id', async (req, res) => {
         return res.send(err)
     }
 })
+//update name
 productRouter.put('/name/:id', async (req, res) => {
     try{
         const {id} = req.params
@@ -62,6 +65,7 @@ productRouter.put('/name/:id', async (req, res) => {
         return res.send(err)
     }
 })
+//update description
 productRouter.put('/description/:id', async (req, res) => {
     try{
         const {id} = req.params
@@ -88,7 +92,7 @@ productRouter.put('/catagory/:id', async (req, res) => {
         return res.send(err)
     }
 })
-
+//add product
 productRouter.post('/', async (req, res) => {
     try{
         const id = v4()
@@ -102,7 +106,7 @@ productRouter.post('/', async (req, res) => {
         return res.send(err)
     }
 })
-
+//delete product
 productRouter.delete('/:id', async (req, res) => {
     try{
         const {id} = req.params

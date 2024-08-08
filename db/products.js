@@ -2,7 +2,8 @@ const DATA = require("./database");
 
 const getAllProducts = () => DATA.query('SELECT * FROM product').then(d=>d.rows)
 const getAllProductsByCatagory = catagory => DATA.query('SELECT * FROM product WHERE catagory = $1', [catagory]).then(d=>d.rows)
-const getProductById = id => DATA.query('SELECT * FROM product WHERE id = $1', [id]).then(d=>d.rows[0])
+const getProductById = id => 
+    DATA.query('SELECT * FROM product WHERE id = $1', [id]).then(d=>d.rows[0]);
 
 const updateProductPrice = (id, price) => DATA.query('UPDATE product SET price = $1 WHERE id = $2', [price, id])
 const updateProductDescription = (id, description) => DATA.query('UPDATE product SET description = $1 WHERE id = $2', [description, id])
